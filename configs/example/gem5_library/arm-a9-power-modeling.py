@@ -1,3 +1,5 @@
+import xml.etree.ElementTree as ET
+
 from minor_mcpat_cpu_power_model.minor_mcpat_cpu_power_model import (
     MinorMcPATCpuPowerModel,
 )
@@ -39,12 +41,14 @@ cache_hierarchy = PrivateL1SharedL2CacheHierarchy(
 mem = SingleChannelLPDDR3_1600("1GiB")
 processor = SimpleProcessor(cpu_type=CPUTypes.MINOR, num_cores=1, isa=ISA.ARM)
 
+xml_tree = ET.parse("configs/example/gem5_library/activation_energies.xml")
+
 for cores in processor.get_cores():
     for c in cores.core.descendants():
         if not isinstance(c, m5.objects.BaseCPU):
             continue
         c.power_state.default_state = "ON"
-        c.power_model = MinorMcPATCpuPowerModel(c)
+        c.power_model = MinorMcPATCpuPowerModel(c, xml_tree)
 
 
 """

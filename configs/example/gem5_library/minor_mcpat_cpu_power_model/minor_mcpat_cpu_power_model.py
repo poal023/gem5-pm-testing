@@ -19,10 +19,10 @@ Main reason is to limit the amount of fns we override/redefine
 class MinorMcPATCpuPowerOn(PowerModelPyFunc):
     """Power model for an MinorCPU"""
 
-    def __init__(self, core):
+    def __init__(self, core, xml_tree):
         """core must be an MinorCPU core"""
         super().__init__()
-        self._fetch = MinorMcPATFetchPower(core)
+        self._fetch = MinorMcPATFetchPower(core, xml_tree)
         self._decode = MinorMcPATDecodePower(core)
         self._exec = MinorMcPATExecutePower(core)
         self._fetch_act_factor = 0.9
@@ -58,11 +58,11 @@ class MinorMcPATCpuPowerOff(PowerModelPyFunc):
 
 
 class MinorMcPATCpuPowerModel(PowerModel):
-    def __init__(self, core):
+    def __init__(self, core, xml_tree):
         super().__init__()
         # Choose a power model for every power state
         self.pm = [
-            MinorMcPATCpuPowerOn(core),  # ON
+            MinorMcPATCpuPowerOn(core, xml_tree),  # ON
             MinorMcPATCpuPowerOff(),  # CLK_GATED
             MinorMcPATCpuPowerOff(),  # SRAM_RETENTION
             MinorMcPATCpuPowerOff(),  # OFF

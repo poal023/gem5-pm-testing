@@ -6,28 +6,31 @@ from .base_power_model import AbstractPowerModel
 
 
 class McPATPowerModel(AbstractPowerModel):
-    def __init__(self, act_energies_path=None, xml_out_path=None):
-        super().__init__()
+    def __init__(self, simobj, xml_tree):
+        super().__init__(simobj)
         self.name = "McPATPowerModel"
-        self.act_energy_tree_root = None
-        self.init_act_energies(self.act_energies_path)
+        self._act_energy_tree_root = None
+        self.init_act_energies(xml_tree)
 
-    def init_act_energies(self, act_energies_path):
+    def init_act_energies(self, act_energies_tree):
         """Change prints to panics in the future"""
         try:
-            self.act_energy_tree_root = ET.parse(act_energies_path).getroot()
-        except xml.etree.ElementTree.ParseError:
-            print("Malformatted XML Tree, please check the file")
-        except FileNotFoundError:
-            print("Path for Activation Energies was not found!")
+            self._act_energy_tree_root = act_energies_tree.getroot()
+        except:
+            print("Problem with XML file!")
 
-    def obtain_act_energy(self, component, act_energy_type):
-        for tags in act_energy_tree_root.iter(component):
-            if tags.tag == act_energy_type:
-                return float(tags.attrib[act_energy_type])
+    def obtain_act_energy(self, component, act_energy_type: str) -> float:
+        try:
+            for tags in self._act_energy_tree_root.iter(component):
+                if tags.tag == component:
+                    return float(tags.attrib[act_energy_type])
+        except KeyError:
+            print(
+                "Could not find activation energy of type {act_energy_type} in {component}!"
+            )
+            return 0.0
 
     def convert_to_watts(self, value: float) -> float:
         """Note that McPAT AEs are already in terms of J, no need for conversion"""
         time = Root.getInstance().resolveStat("simSeconds").total
-        value_in_j = value
-        return value_in_j
+        return value / time

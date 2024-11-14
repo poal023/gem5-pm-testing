@@ -12,11 +12,11 @@ from .tournament_bp_power_model import TournamentBPPower
 
 class MinorMcPATFetchPower(AbstractPowerModel):
     # avoid the use of default values
-    def __init__(self, minorcpu: BaseMinorCPU):
+    def __init__(self, minorcpu: BaseMinorCPU, xml_tree):
         super().__init__(minorcpu)
         # _rf isn't really needed since you have `_simobj`
         self.name = "Fetch"
-        self._bp = TournamentBPPower(minorcpu)
+        self._bp = TournamentBPPower(minorcpu, xml_tree)
 
     def static_power(self) -> float:
         """Returns static power in Watts"""
