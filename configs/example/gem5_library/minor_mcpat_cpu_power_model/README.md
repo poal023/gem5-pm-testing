@@ -12,7 +12,7 @@ Firstly, make sure you compile gem5 for any architecture to run this PM, via:
 Once this is done, if you wish to just run the current power model you should be able to use a simple script from the base gem5/ directory:
 `./run-power-modeling.sh`, which just runs the python script at `configs/example/gem5_library/arm-a9-power-modeling.py`.
 
-The actual SimObj that takes in the return result of a Python function is `PowerModelFunc`, which expects the return value of `dynamic_power` and `static_power` to be fed into `self.dyn` and `self.st`. Please see `configs/example/gem5_library/minor_mcpat_cpu_power_model/minor_mcpat_cpu_power_model.py` for an example.
+The actual SimObj that takes in the return result of a Python function is `PowerModelPyFunc`, which expects the return value of `dynamic_power` and `static_power` to be fed into `self.dyn` and `self.st`. Please see `configs/example/gem5_library/minor_mcpat_cpu_power_model/minor_mcpat_cpu_power_model.py` for an example.
 
 ## Modfying PMs and PM SimObjects
-The actual PowerModelFunc SimObject is located in `src/learning_gem5/part2/power_model_func.{cc/hh}`, while the SimObj Python file is in the same directory but just `PowerModelFunc.py`.
+The actual PowerModelPyFunc SimObject is located in `src/learning_gem5/part2/power_model_pyfunc.{cc/hh}`, while the SimObj Python file is in the same directory but just `PowerModelPyFunc.py`.

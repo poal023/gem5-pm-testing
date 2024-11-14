@@ -2,13 +2,13 @@ from m5.objects import (
     L2XBar,
     Port,
     PowerModel,
-    PowerModelFunc,
+    PowerModelPyFunc,
     SystemXBar,
 )
 from m5.stats import *
 
 
-class L2PowerOn(PowerModelFunc):
+class L2PowerOn(PowerModelPyFunc):
     def __init__(self, l2cache):
         super().__init__()
         # The SimObject that contains the stats we need.

@@ -2,7 +2,7 @@ from m5.objects import (
     L2XBar,
     Port,
     PowerModel,
-    PowerModelFunc,
+    PowerModelPyFunc,
     SystemXBar,
 )
 from m5.stats import *
@@ -10,7 +10,7 @@ from m5.stats import *
 from .power_model_l2on import L2PowerOn
 
 
-class L2PowerOff(PowerModelFunc):
+class L2PowerOff(PowerModelPyFunc):
     def __init__(self):
         super().__init__()
         self.dyn = lambda: 0.0

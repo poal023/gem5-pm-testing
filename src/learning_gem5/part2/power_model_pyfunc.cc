@@ -1,11 +1,11 @@
-#include "learning_gem5/part2/power_model_func.hh"
+#include "learning_gem5/part2/power_model_pyfunc.hh"
 
 #include "base/trace.hh"
 
 namespace gem5
 {
 
-PowerModelFunc::PowerModelFunc(const Params &p)
+PowerModelPyFunc::PowerModelPyFunc(const Params &p)
            :  PowerModelState(p), dyn(p.dyn), st(p.st)
         {
            // Bind PyFunc parameters into functions to be called in this SimObj

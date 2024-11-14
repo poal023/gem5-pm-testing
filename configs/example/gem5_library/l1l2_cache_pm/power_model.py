@@ -2,7 +2,7 @@ from m5.objects import (
     L2XBar,
     Port,
     PowerModel,
-    PowerModelFunc,
+    PowerModelPyFunc,
     SystemXBar,
 )
 from m5.stats.gem5stats import get_simstat
@@ -21,7 +21,7 @@ def st_eq():
     return 0.0
 
 
-class L2PowerOn(PowerModelFunc):
+class L2PowerOn(PowerModelPyFunc):
     def __init__(self, data_latency, **kwargs):
         super().__init__(**kwargs)
         # Example to report l2 Cache overallAccesses
@@ -38,7 +38,7 @@ class L2PowerOn(PowerModelFunc):
         # self.dyn = f"board.cache_hierarchy.l2cache.overallAccesses * 0.00001800"
 
 
-class L2PowerOff(PowerModelFunc):
+class L2PowerOff(PowerModelPyFunc):
     dyn = st_eq()
     st = st_eq()
 

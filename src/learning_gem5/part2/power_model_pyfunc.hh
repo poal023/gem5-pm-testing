@@ -1,7 +1,7 @@
 #ifndef __SIM_POWERMODEL_FUNC_PM_HH__
 #define __SIM_POWERMODEL_FUNC_PM_HH__
 
-#include "params/PowerModelFunc.hh"
+#include "params/PowerModelPyFunc.hh"
 #include "python/pybind11/pybind.hh"
 #include "sim/power/power_model.hh"
 #include "sim/sim_object.hh"
@@ -9,7 +9,7 @@
 namespace gem5
 {
 
-class PowerModelFunc : public PowerModelState
+class PowerModelPyFunc : public PowerModelState
 {
    private:
      pybind11::object dyn;
@@ -18,8 +18,8 @@ class PowerModelFunc : public PowerModelState
      pybind11::function dyn_func;
 
    public:
-     PARAMS(PowerModelFunc);
-     PowerModelFunc(const Params &p);
+     PARAMS(PowerModelPyFunc);
+     PowerModelPyFunc(const Params &p);
      double getDynamicPower() const override {
              pybind11::object result_py = dyn_func();
              return result_py.cast<double>();

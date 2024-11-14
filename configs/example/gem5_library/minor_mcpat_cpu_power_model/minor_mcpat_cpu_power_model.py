@@ -2,7 +2,7 @@ from m5.objects import (
     BaseMinorCPU,
     BaseO3CPU,
     PowerModel,
-    PowerModelFunc,
+    PowerModelPyFunc,
 )
 
 from .minor_mcpat_decode_power_model import MinorMcPATDecodePower
@@ -16,7 +16,7 @@ Main reason is to limit the amount of fns we override/redefine
 """
 
 
-class MinorMcPATCpuPowerOn(PowerModelFunc):
+class MinorMcPATCpuPowerOn(PowerModelPyFunc):
     """Power model for an MinorCPU"""
 
     def __init__(self, core):
@@ -50,7 +50,7 @@ class MinorMcPATCpuPowerOn(PowerModelFunc):
         return total
 
 
-class MinorMcPATCpuPowerOff(PowerModelFunc):
+class MinorMcPATCpuPowerOff(PowerModelPyFunc):
     def __init__(self):
         super().__init__()
         self.dyn = lambda: 0.0
