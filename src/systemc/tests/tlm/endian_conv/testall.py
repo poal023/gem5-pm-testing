@@ -72,8 +72,8 @@ import string
 
 
 class transaction:
-    """ contains read_not_write, address, length, byte_enable,
-      bus_width, data_width, data_pointer, stream_width """
+    """contains read_not_write, address, length, byte_enable,
+    bus_width, data_width, data_pointer, stream_width"""
 
     def __init__(self, **a):
         self.__dict__ = a

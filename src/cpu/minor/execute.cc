@@ -272,6 +272,7 @@ Execute::tryToBranch(MinorDynInstPtr inst, Fault fault, BranchData &branch)
                 *inst);
 
             reason = BranchData::CorrectlyPredictedBranch;
+            cpu.executeStats[inst->id.threadId]->numBranches++;
         } else {
             /* Branch prediction got the wrong target */
             DPRINTF(Branch, "Predicted a branch from 0x%x to 0x%x"
@@ -280,6 +281,7 @@ Execute::tryToBranch(MinorDynInstPtr inst, Fault fault, BranchData &branch)
                     target->instAddr(), *inst);
 
             reason = BranchData::BadlyPredictedBranchTarget;
+            cpu.executeStats[inst->id.threadId]->numBranches++;
         }
     } else if (must_branch) {
         /* Unpredicted branch */
@@ -287,6 +289,7 @@ Execute::tryToBranch(MinorDynInstPtr inst, Fault fault, BranchData &branch)
             inst->pc->instAddr(), target->instAddr(), *inst);
 
         reason = BranchData::UnpredictedBranch;
+        cpu.executeStats[inst->id.threadId]->numBranches++;
     } else {
         /* No branch at all */
         reason = BranchData::NoBranch;
@@ -876,6 +879,48 @@ Execute::doInstCommitAccounting(MinorDynInstPtr inst)
     cpu.commitStats[inst->id.threadId]->numOps++;
     cpu.commitStats[inst->id.threadId]
         ->committedInstType[inst->staticInst->opClass()]++;
+
+    StaticInstPtr curStaticInst = inst->staticInst;
+
+    if (curStaticInst->isMemRef()) {
+       cpu.executeStats[inst->id.threadId]->numMemRefs++;
+    }
+
+    if (curStaticInst->isControl()) {
+       ++cpu.fetchStats[inst->id.threadId]->numBranches;
+    }
+
+    if (curStaticInst->isVector()) {
+        cpu.executeStats[inst->id.threadId]->numVecAluAccesses++;
+        cpu.commitStats[inst->id.threadId]->numVecInsts++;
+    }
+
+    if (curStaticInst->isFloating()) {
+        cpu.executeStats[inst->id.threadId]->numFpAluAccesses++;
+        cpu.commitStats[inst->id.threadId]->numFpInsts++;
+    }
+
+    if (curStaticInst->isInteger()) {
+        cpu.executeStats[inst->id.threadId]->numIntAluAccesses++;
+        cpu.commitStats[inst->id.threadId]->numIntInsts++;
+    }
+
+    /*
+    if (curStaticInst->isMatrix()) {
+        cpu.executeStats[inst->id.threadId]->numMatAluAccesses++;
+        cpu.commitStats[inst->id.threadId]->numMatInsts++;
+    }
+    */
+
+    if (curStaticInst->isLoad()) {
+       cpu.commitStats[inst->id.threadId]->numLoadInsts++;
+    }
+    if (curStaticInst->isStore() || curStaticInst->isAtomic()) {
+       cpu.commitStats[inst->id.threadId]->numStoreInsts++;
+    }
+    if (curStaticInst->isCall() || curStaticInst->isReturn()) {
+       cpu.commitStats[inst->id.threadId]->numCallsReturns++;
+    }
 
     /* Set the CP SeqNum to the numOps commit number */
     if (inst->traceData)

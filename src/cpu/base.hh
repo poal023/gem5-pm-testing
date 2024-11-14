@@ -807,6 +807,9 @@ class BaseCPU : public ClockedObject
         /* Number of vector instructions */
         statistics::Scalar numVecInsts;
 
+        /* Number of function calls */
+        statistics::Scalar numCallsReturns;
+
         /* Number of instructions committed by type (OpClass) */
         statistics::Vector committedInstType;
 

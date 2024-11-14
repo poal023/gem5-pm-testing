@@ -147,14 +147,41 @@ class ExecContext : public gem5::ExecContext
     getRegOperand(const StaticInst *si, int idx) override
     {
         const RegId &reg = si->srcRegIdx(idx);
+        const int tid = thread.threadId();
         if (reg.is(InvalidRegClass))
             return 0;
+        if (reg.is(IntRegClass))
+            cpu.executeStats[tid]->numIntRegReads++;
+        else if (reg.is(FloatRegClass))
+            cpu.executeStats[tid]->numFpRegReads++;
+        else if (reg.is(CCRegClass))
+            cpu.executeStats[tid]->numCCRegReads++;
+        else if (reg.is(VecRegClass) || reg.is(VecElemClass))
+            cpu.executeStats[tid]->numVecRegReads++;
+        else if (reg.is(VecPredRegClass))
+            cpu.executeStats[tid]->numVecPredRegReads++;
+
         return thread.getReg(reg);
     }
 
     void
     getRegOperand(const StaticInst *si, int idx, void *val) override
     {
+        const int tid = thread.threadId();
+
+        /*
+        if (reg.is(IntRegClass))
+            cpu.executeStats[tid]->numIntRegReads++;
+        else if (reg.is(FloatRegClass))
+            cpu.executeStats[tid]->numFpRegReads++;
+        else if (reg.is(CCRegClass))
+            cpu.executeStats[tid]->numCCRegReads++;
+        else if (reg.is(VecRegClass) || reg.is(VecElemClass))
+            cpu.executeStats[tid]->numVecRegReads++;
+        else if (reg.is(VecPredRegClass))
+            cpu.executeStats[tid]->numVecPredRegReads++;
+        */
+
         thread.getReg(si->srcRegIdx(idx), val);
     }
 
@@ -168,14 +195,42 @@ class ExecContext : public gem5::ExecContext
     setRegOperand(const StaticInst *si, int idx, RegVal val) override
     {
         const RegId &reg = si->destRegIdx(idx);
+        const int tid = thread.threadId();
+
         if (reg.is(InvalidRegClass))
             return;
+        if (reg.is(IntRegClass))
+            cpu.executeStats[tid]->numIntRegWrites++;
+        else if (reg.is(FloatRegClass))
+            cpu.executeStats[tid]->numFpRegWrites++;
+        else if (reg.is(CCRegClass))
+            cpu.executeStats[tid]->numCCRegWrites++;
+        else if (reg.is(VecRegClass) || reg.is(VecElemClass))
+            cpu.executeStats[tid]->numVecRegWrites++;
+        else if (reg.is(VecPredRegClass))
+            cpu.executeStats[tid]->numVecPredRegWrites++;
+
         thread.setReg(si->destRegIdx(idx), val);
     }
 
     void
     setRegOperand(const StaticInst *si, int idx, const void *val) override
     {
+        const int tid = thread.threadId();
+
+        /*
+        if (reg.is(IntRegClass))
+            cpu.executeStats[tid]->numIntRegWrites++;
+        else if (reg.is(FloatRegClass))
+            cpu.executeStats[tid]->numFpRegWrites++;
+        else if (reg.is(CCRegClass))
+            cpu.executeStats[tid]->numCCRegWrites++;
+        else if (reg.is(VecRegClass) || reg.is(VecElemClass))
+            cpu.executeStats[tid]->numVecRegWrites++;
+        else if (reg.is(VecPredRegClass))
+            cpu.executeStats[tid]->numVecPredRegWrites++;
+        */
+
         thread.setReg(si->destRegIdx(idx), val);
     }
 
@@ -257,12 +312,16 @@ class ExecContext : public gem5::ExecContext
     RegVal
     readMiscReg(int misc_reg) override
     {
+        int tid = thread.threadId();
+        cpu.executeStats[tid]->numMiscRegReads++;
         return thread.readMiscReg(misc_reg);
     }
 
     void
     setMiscReg(int misc_reg, RegVal val) override
     {
+        int tid = thread.threadId();
+        cpu.executeStats[tid]->numMiscRegWrites++;
         thread.setMiscReg(misc_reg, val);
     }
 
