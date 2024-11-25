@@ -138,14 +138,16 @@ class Fetch2 : public Named
          *  changes of instruction stream */
         InstSeqNum lastStreamSeqNum = InstId::firstStreamSeqNum;
 
-        /** Fetch2 is the source of fetch sequence numbers.  These represent the
-         *  sequence that instructions were extracted from fetched lines. */
+        /** Fetch2 is the source of fetch sequence numbers.
+         * These represent the sequence that instructions
+         * were extracted from fetched lines. */
         InstSeqNum fetchSeqNum = InstId::firstFetchSeqNum;
 
         /** Stream sequence number remembered from last time the
-         *  predictionSeqNum changed.  Lines should only be discarded when their
-         *  predictionSeqNums disagree with Fetch2::predictionSeqNum *and* they
-         *  are from the same stream that bore that prediction number */
+         *  predictionSeqNum changed.  Lines should only be discarded
+         *  when their predictionSeqNums disagree with
+         *  Fetch2::predictionSeqNum *and* they are from
+         *  the same stream that bore that prediction number */
         InstSeqNum expectedStreamSeqNum = InstId::firstStreamSeqNum;
 
         /** Fetch2 is the source of prediction sequence numbers.  These
@@ -164,6 +166,7 @@ class Fetch2 : public Named
     {
         Fetch2Stats(MinorCPU *cpu);
         /** Stats */
+        statistics::Scalar totalInstructions;
         statistics::Scalar intInstructions;
         statistics::Scalar fpInstructions;
         statistics::Scalar vecInstructions;
