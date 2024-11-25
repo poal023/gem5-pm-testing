@@ -23,10 +23,12 @@ class MinorMcPATCpuPowerOn(PowerModelPyFunc):
         """core must be an MinorCPU core"""
         super().__init__()
         self._fetch = MinorMcPATFetchPower(core, xml_tree)
-        self._decode = MinorMcPATDecodePower(core)
-        self._exec = MinorMcPATExecutePower(core)
+        self._decode = MinorMcPATDecodePower(core, xml_tree)
+        self._exec = MinorMcPATExecutePower(core, xml_tree)
         self._fetch_act_factor = 0.9
-        self._pipeline_act_factor = 1.0  # according to McPAT, this is rt ipc / peak ipc, if this value is <= 1(?)
+        # according to McPAT, this is rt ipc / peak ipc,
+        # if this value is <= 1(?)
+        self._pipeline_act_factor = 1.0
         # self._mem = MinorMemoryPower(core)
 
         self.dyn = self.dynamic_power

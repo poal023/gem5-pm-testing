@@ -9,6 +9,7 @@ from m5.objects import (
 # Note that the below dictionaries are a bit hacky
 # and are subject to change...
 
+"""
 bp_stats = {
     "BTBLookups": "branchPred.BTBLookups",
     "BTBHits": "branchPred.BTBHits",
@@ -54,6 +55,7 @@ o3_stats = {
     "condPredicted": bp_stats["condPredicted"],
     "condIncorrect": bp_stats["condIncorrect"],
 }
+"""
 
 
 # Class names should be in CamelCase. Also, this is an abstract base class.
@@ -71,12 +73,13 @@ class AbstractPowerModel:
 
     def get_stat(self, stat):
         """Get the value of a stat, if it exists. Otherwise, return 0.0"""
-        stats_dictionary = {0: minor_stats, 1: minor_stats, 2: o3_stats}
+        # stats_dictionary = {0: minor_stats, 1: minor_stats, 2: o3_stats}
         try:
-            target_stat = stats_dictionary[self.check_cpu_type(self._simobj)][
-                stat
-            ]
-            total = self._simobj.resolveStat(target_stat).total
+            # target_stat =\
+            #        stats_dictionary[self.check_cpu_type(self._simobj)][
+            #     stat
+            # ]
+            total = self._simobj.resolveStat(stat).total
             return total
         except KeyError:
             # In the future, this should be a `panic`

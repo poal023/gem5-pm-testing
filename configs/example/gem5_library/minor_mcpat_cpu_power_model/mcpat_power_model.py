@@ -19,18 +19,21 @@ class McPATPowerModel(AbstractPowerModel):
         except:
             print("Problem with XML file!")
 
-    def obtain_act_energy(self, component, act_energy_type: str) -> float:
+    def get_act_energy(self, component, act_energy_type: str) -> float:
         try:
             for tags in self._act_energy_tree_root.iter(component):
                 if tags.tag == component:
                     return float(tags.attrib[act_energy_type])
         except KeyError:
             print(
-                "Could not find activation energy of type {act_energy_type} in {component}!"
+                "Could not find activation energy of type {act_energy_type}\
+                in {component}!"
             )
             return 0.0
 
     def convert_to_watts(self, value: float) -> float:
-        """Note that McPAT AEs are already in terms of J, no need for conversion"""
+        """Note that McPAT AEs are already in terms of J,
+        no need for conversion"""
+
         time = Root.getInstance().resolveStat("simSeconds").total
         return value / time

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<activation_energies>
+	<icache Read="9.38791e-12" Write="1.77257e-11" Search="0"/>
+	<icacheMissBuffer Read="6.13188e-12" Write="6.03686e-12" Search="5.31524e-12"/>
+	<icacheFillBuffer Read="3.19263e-12" Write="3.17392e-12" Search="2.93613e-12"/>
+	<icacheprefetchBuffer Read="3.19263e-12" Write="3.17392e-12" Search="2.93613e-12"/>
+	<InstBuffer Read="6.69479e-12" Write="7.269e-12" Search="0"/>
+	<BTB Read="5.62534e-12" Write="8.68454e-12" Search="0"/>
+	<GlobalPred Read="2.81993e-12" Write="1.50057e-12" Search="0"/>
+	<L1Pred Read="1.59669e-13" Write="2.99057e-13" Search="0"/>
+	<L2Pred Read="1.22289e-13" Write="1.96004e-13" Search="0"/>
+	<PredChooser Read="2.81993e-12" Write="1.50057e-12" Search="0"/>
+	<RAS Read="3.36208e-13" Write="4.51353e-13" Search="0"/>
+	<dcache Read="9.38791e-12" Write="1.77257e-11" Search="0"/>
+	<dcacheMissBuffer Read="6.13188e-12" Write="6.03686e-12" Search="5.31524e-12"/>
+	<dcacheFillBuffer Read="3.19263e-12" Write="3.17392e-12" Search="2.93613e-12"/>
+	<dcacheprefetchBuffer Read="3.19263e-12" Write="3.17392e-12" Search="2.93613e-12"/>
+	<dcacheWBB Read="3.19263e-12" Write="3.17392e-12" Search="2.93613e-12"/>
+	<LoadStoreQueue Read="2.49139e-12" Write="2.57072e-12" Search="2.5361e-12"/>
+	<ITLB Read="1.4039e-12" Write="1.77965e-12" Search="3.49054e-12"/>
+	<DTLB Read="1.4039e-12" Write="1.77965e-12" Search="3.49054e-12"/>
+	<IntRegFile Read="1.93199e-12" Write="2.55776e-12" Search="0"/>
+	<FPRegFile Read="1.3027e-12" Write="1.66805e-12" Search="0"/>
+	<First_Level_Directorycache Read="7.55745e-12" Write="7.84797e-12" Search="1.1303e-10"/>
+</activation_energies>
