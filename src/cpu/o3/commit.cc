@@ -160,8 +160,6 @@ Commit::CommitStats::CommitStats(CPU *cpu, Commit *commit)
                "Number of atomic instructions committed"),
       ADD_STAT(membars, statistics::units::Count::get(),
                "Number of memory barriers committed"),
-      ADD_STAT(functionCalls, statistics::units::Count::get(),
-               "Number of function calls committed."),
       ADD_STAT(committedInstType, statistics::units::Count::get(),
                "Class of committed instruction"),
       ADD_STAT(commitEligibleSamples, statistics::units::Cycle::get(),
@@ -183,10 +181,6 @@ Commit::CommitStats::CommitStats(CPU *cpu, Commit *commit)
 
     membars
         .init(cpu->numThreads)
-        .flags(total);
-
-    functionCalls
-        .init(commit->numThreads)
         .flags(total);
 
     committedInstType
@@ -962,6 +956,7 @@ Commit::commitInsts()
                 ++num_committed;
                 cpu->commitStats[tid]
                     ->committedInstType[head_inst->opClass()]++;
+                //auto addr = pc[tid]->instAddr();
                 stats.committedInstType[tid][head_inst->opClass()]++;
                 ppCommit->notify(head_inst);
 
@@ -1353,7 +1348,7 @@ Commit::updateComInstStats(const DynInstPtr &inst)
             cpu->commitStats[tid]->numLoadInsts++;
         }
 
-        if (inst->isStore()) {
+        if (inst->isStore() || inst->isAtomic()) {
             cpu->commitStats[tid]->numStoreInsts++;
         }
     }
@@ -1377,8 +1372,13 @@ Commit::updateComInstStats(const DynInstPtr &inst)
     }
 
     // Function Calls
-    if (inst->isCall())
-        stats.functionCalls[tid]++;
+    if (inst->isCall()) {
+        cpu->commitStats[tid]->functionCalls++;
+    }
+
+    if (inst->isCall() || inst->isReturn()) {
+        cpu->commitStats[tid]->numCallsReturns++;
+    }
 
 }
 

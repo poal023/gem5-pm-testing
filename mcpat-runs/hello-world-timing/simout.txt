@@ -1,0 +1,189 @@
+info: Using default config
+warn: Base 10 memory/cache size 32kB will be cast to base 2 size 32KiB.
+warn: Base 10 memory/cache size 32kB will be cast to base 2 size 32KiB.
+warn: Base 10 memory/cache size 1MB will be cast to base 2 size 1MiB.
+Global frequency set at 1000000000000 ticks per second
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (512 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+src/sim/power_state.cc:105: warn: PowerState: Already in the requested power state, request ignored
+src/sim/simulate.cc:200: info: Entering event queue @ 0.  Starting simulation...
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/picaro/.cache/gem5/arm-hello64-static'
+Hello world!
+L1Dcache energy: 2.7829040549999996e-08
+	+ mb energy: 2.8510166549999995e-08
+	+ ifb energy: 2.8876769549999993e-08
+	+ prefetch energy: 2.924337254999999e-08
+	+ wbb energy: 2.960997554999999e-08
+L1D power: 0.0009830505984296405
+L1Dcache energy: 2.7829040549999996e-08
+	+ mb energy: 2.8510166549999995e-08
+	+ ifb energy: 2.8876769549999993e-08
+	+ prefetch energy: 2.924337254999999e-08
+	+ wbb energy: 2.960997554999999e-08
+L1D power: 0.0009830505984296405
+L1I power: 0.0019864940605235633
+L1I power: 0.0019864940605235633
+L2cache energy: 1.07944005e-07
+	+ mb energy: 1.1495119472999999e-07
+	+ ifb energy: 1.4799165573e-07
+	+ prefetch energy: 1.8103211673000002e-07
+	+ wbb energy: 2.1407257773000003e-07
+L2 power: 0.007107205316312811
+L2cache energy: 1.07944005e-07
+	+ mb energy: 1.1495119472999999e-07
+	+ ifb energy: 1.4799165573e-07
+	+ prefetch energy: 1.8103211673000002e-07
+	+ wbb energy: 2.1407257773000003e-07
+L2 power: 0.007107205316312811
+********************************************************************************
+Core:
+      Runtime Dynamic = 0.027980849593736822
+
+      Instruction Fetch Unit
+        Runtime Dynamic = 0.010910365337125878 W
+
+          Branch Target Buffer:
+            Runtime Dynamic = 0.0005135698371540977 W
+
+          Branch Predictor:
+            Runtime Dynamic = 0.00021237272661144403 W
+
+              Global Predictor:
+                Runtime Dynamic = 9.746628917182649e-05 W
+
+              L1_Local Predictor:
+                Runtime Dynamic = 8.75206455072127e-06 W
+
+              L2_Local Predictor:
+                Runtime Dynamic = 6.204117813449312e-06 W
+
+              Chooser:
+                Runtime Dynamic = 9.746628917182649e-05 W
+
+              RAS:
+                Runtime Dynamic = 2.4839659036204575e-06 W
+
+          Instruction Buffer
+            Runtime Dynamic = 0.002388918174333095 W
+
+          Instruction Decoder
+            Runtime Dynamic = 0.0025152945990272405 W
+
+      Load Store Unit
+        Runtime Dynamic = 0.0051361970986371405 W
+
+          Load Store Queue
+            Runtime Dynamic = 0.0009706980986371408 W
+
+      Memory Management Unit
+        Runtime Dynamic = 0.0050161995000000004 W
+
+          Itlb
+            Runtime Dynamic = 0.0 W
+
+          Dtlb
+            Runtime Dynamic = 0.0 W
+
+      Execution Unit:
+        Runtime Dynamic = 0.006918087657973806 W
+
+          Register Files:
+            Runtime Dynamic = 0.0007162034063179563 W
+
+              Integer RF:
+                Runtime Dynamic = 0.0007162034063179563 W
+
+              Floating Point RF:
+                Runtime Dynamic = 0.0 W
+
+          Integer ALUs:
+            Runtime Dynamic = 0.000812327295031623 W
+
+          Floating Point Units (FPU):
+            Runtime Dynamic = 6.196245082252951e-05 W
+
+          Complex ALUs (Mul/Div):
+            Runtime Dynamic = 3.3046728971962615e-06 W
+
+          Results Broadcast Bus:
+            Runtime Dynamic = 0.0008654458329045002 W
+
+********************************************************************************
+********************************************************************************
+Core:
+      Runtime Dynamic = 0.027980849593736822
+
+      Instruction Fetch Unit
+        Runtime Dynamic = 0.010910365337125878 W
+
+          Branch Target Buffer:
+            Runtime Dynamic = 0.0005135698371540977 W
+
+          Branch Predictor:
+            Runtime Dynamic = 0.00021237272661144403 W
+
+              Global Predictor:
+                Runtime Dynamic = 9.746628917182649e-05 W
+
+              L1_Local Predictor:
+                Runtime Dynamic = 8.75206455072127e-06 W
+
+              L2_Local Predictor:
+                Runtime Dynamic = 6.204117813449312e-06 W
+
+              Chooser:
+                Runtime Dynamic = 9.746628917182649e-05 W
+
+              RAS:
+                Runtime Dynamic = 2.4839659036204575e-06 W
+
+          Instruction Buffer
+            Runtime Dynamic = 0.002388918174333095 W
+
+          Instruction Decoder
+            Runtime Dynamic = 0.0025152945990272405 W
+
+      Load Store Unit
+        Runtime Dynamic = 0.0051361970986371405 W
+
+          Load Store Queue
+            Runtime Dynamic = 0.0009706980986371408 W
+
+      Memory Management Unit
+        Runtime Dynamic = 0.0050161995000000004 W
+
+          Itlb
+            Runtime Dynamic = 0.0 W
+
+          Dtlb
+            Runtime Dynamic = 0.0 W
+
+      Execution Unit:
+        Runtime Dynamic = 0.006918087657973806 W
+
+          Register Files:
+            Runtime Dynamic = 0.0007162034063179563 W
+
+              Integer RF:
+                Runtime Dynamic = 0.0007162034063179563 W
+
+              Floating Point RF:
+                Runtime Dynamic = 0.0 W
+
+          Integer ALUs:
+            Runtime Dynamic = 0.000812327295031623 W
+
+          Floating Point Units (FPU):
+            Runtime Dynamic = 6.196245082252951e-05 W
+
+          Complex ALUs (Mul/Div):
+            Runtime Dynamic = 3.3046728971962615e-06 W
+
+          Results Broadcast Bus:
+            Runtime Dynamic = 0.0008654458329045002 W
+
+********************************************************************************

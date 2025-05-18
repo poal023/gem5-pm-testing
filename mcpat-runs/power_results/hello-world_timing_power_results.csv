@@ -1,0 +1,3 @@
+,Core,L1D$,L1I$,L2$
+gem5_timing_hello-world,0.027981,0.001986,0.000983,0.007107
+mcpat_timing_hello-world,0.02798096,0.00198649,0.00098305,0.00710721

@@ -1,0 +1,205 @@
+warn: Base 10 memory/cache size 32kB will be cast to base 2 size 32KiB.
+warn: Base 10 memory/cache size 32kB will be cast to base 2 size 32KiB.
+warn: Base 10 memory/cache size 1MB will be cast to base 2 size 1MiB.
+Global frequency set at 1000000000000 ticks per second
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (512 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/cpu/minor/execute.cc:167: warn: No functional unit for OpClass SimdUnitStrideSegmentedLoad
+src/cpu/minor/execute.cc:167: warn: No functional unit for OpClass SimdUnitStrideSegmentedStore
+board.remote_gdb: Listening for connections on port 7000
+src/sim/power_state.cc:105: warn: PowerState: Already in the requested power state, request ignored
+src/sim/simulate.cc:200: info: Entering event queue @ 0.  Starting simulation...
+src/sim/syscall_emul.cc:86: warn: ignoring syscall set_robust_list(...)
+src/sim/syscall_emul.cc:97: warn: ignoring syscall rseq(...)
+      (further warnings will be suppressed)
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/picaro/Documents/Programming/gem5/configs/example/gem5_library/workloads/iaxpy'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+src/sim/syscall_emul.cc:86: warn: ignoring syscall mprotect(...)
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+BeginExitHandler, resetting stats
+src/sim/simulate.cc:200: info: Entering event queue @ 406436000.  Starting simulation...
+EndExitHandler, dumping stats
+L1Dcache energy: 1.4951022592e-07
+	+ mb energy: 1.4951022592e-07
+	+ ifb energy: 1.4951022592e-07
+	+ prefetch energy: 1.4951022592e-07
+	+ wbb energy: 1.4951022592e-07
+L1D power: 0.007293537534513879
+L1Dcache energy: 1.4951022592e-07
+	+ mb energy: 1.4951022592e-07
+	+ ifb energy: 1.4951022592e-07
+	+ prefetch energy: 1.4951022592e-07
+	+ wbb energy: 1.4951022592e-07
+L1D power: 0.007293537534513879
+L1I power: 0.007507946560320015
+L1I power: 0.007507946560320015
+L2cache energy: 3.7652604e-08
+	+ mb energy: 3.7652604e-08
+	+ ifb energy: 3.7652604e-08
+	+ prefetch energy: 3.7652604e-08
+	+ wbb energy: 3.7652604e-08
+L2 power: 0.001836801990340992
+L2cache energy: 3.7652604e-08
+	+ mb energy: 3.7652604e-08
+	+ ifb energy: 3.7652604e-08
+	+ prefetch energy: 3.7652604e-08
+	+ wbb energy: 3.7652604e-08
+L2 power: 0.001836801990340992
+********************************************************************************
+Core:
+      Runtime Dynamic = 0.10699517792431826
+
+      Instruction Fetch Unit
+        Runtime Dynamic = 0.06679006840836627 W
+
+          Branch Target Buffer:
+            Runtime Dynamic = 0.0028631892433777255 W
+
+          Branch Predictor:
+            Runtime Dynamic = 0.0012553753848041367 W
+
+              Global Predictor:
+                Runtime Dynamic = 0.0005944640698082833 W
+
+              L1_Local Predictor:
+                Runtime Dynamic = 3.798439302892824e-05 W
+
+              L2_Local Predictor:
+                Runtime Dynamic = 2.842443267476462e-05 W
+
+              Chooser:
+                Runtime Dynamic = 0.0005944640698082833 W
+
+              RAS:
+                Runtime Dynamic = 3.84194838772623e-08 W
+
+          Instruction Buffer
+            Runtime Dynamic = 0.0279561901361042 W
+
+          Instruction Decoder
+            Runtime Dynamic = 0.0294351036440802 W
+
+      Load Store Unit
+        Runtime Dynamic = 0.013274899895653447 W
+
+          Load Store Queue
+            Runtime Dynamic = 0.009109400895653446 W
+
+      Memory Management Unit
+        Runtime Dynamic = 0.0050161995000000004 W
+
+          Itlb
+            Runtime Dynamic = 0.0 W
+
+          Dtlb
+            Runtime Dynamic = 0.0 W
+
+      Execution Unit:
+        Runtime Dynamic = 0.02191401012029855 W
+
+          Register Files:
+            Runtime Dynamic = 0.0 W
+
+              Integer RF:
+                Runtime Dynamic = 0.0 W
+
+              Floating Point RF:
+                Runtime Dynamic = 0.0 W
+
+          Integer ALUs:
+            Runtime Dynamic = 0.0087084894555832 W
+
+          Floating Point Units (FPU):
+            Runtime Dynamic = 0.0 W
+
+          Complex ALUs (Mul/Div):
+            Runtime Dynamic = 0.0 W
+
+          Results Broadcast Bus:
+            Runtime Dynamic = 0.00874667666471535 W
+
+********************************************************************************
+********************************************************************************
+Core:
+      Runtime Dynamic = 0.10699517792431826
+
+      Instruction Fetch Unit
+        Runtime Dynamic = 0.06679006840836627 W
+
+          Branch Target Buffer:
+            Runtime Dynamic = 0.0028631892433777255 W
+
+          Branch Predictor:
+            Runtime Dynamic = 0.0012553753848041367 W
+
+              Global Predictor:
+                Runtime Dynamic = 0.0005944640698082833 W
+
+              L1_Local Predictor:
+                Runtime Dynamic = 3.798439302892824e-05 W
+
+              L2_Local Predictor:
+                Runtime Dynamic = 2.842443267476462e-05 W
+
+              Chooser:
+                Runtime Dynamic = 0.0005944640698082833 W
+
+              RAS:
+                Runtime Dynamic = 3.84194838772623e-08 W
+
+          Instruction Buffer
+            Runtime Dynamic = 0.0279561901361042 W
+
+          Instruction Decoder
+            Runtime Dynamic = 0.0294351036440802 W
+
+      Load Store Unit
+        Runtime Dynamic = 0.013274899895653447 W
+
+          Load Store Queue
+            Runtime Dynamic = 0.009109400895653446 W
+
+      Memory Management Unit
+        Runtime Dynamic = 0.0050161995000000004 W
+
+          Itlb
+            Runtime Dynamic = 0.0 W
+
+          Dtlb
+            Runtime Dynamic = 0.0 W
+
+      Execution Unit:
+        Runtime Dynamic = 0.02191401012029855 W
+
+          Register Files:
+            Runtime Dynamic = 0.0 W
+
+              Integer RF:
+                Runtime Dynamic = 0.0 W
+
+              Floating Point RF:
+                Runtime Dynamic = 0.0 W
+
+          Integer ALUs:
+            Runtime Dynamic = 0.0087084894555832 W
+
+          Floating Point Units (FPU):
+            Runtime Dynamic = 0.0 W
+
+          Complex ALUs (Mul/Div):
+            Runtime Dynamic = 0.0 W
+
+          Results Broadcast Bus:
+            Runtime Dynamic = 0.00874667666471535 W
+
+********************************************************************************
