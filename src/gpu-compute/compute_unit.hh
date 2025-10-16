@@ -1056,10 +1056,31 @@ class ComputeUnit : public ClockedObject
     struct ComputeUnitStats : public statistics::Group
     {
         ComputeUnitStats(statistics::Group *parent, int n_wf);
-
+        statistics::Scalar totalInsts;
         statistics::Scalar vALUInsts;
         statistics::Formula vALUInstsPerWF;
         statistics::Scalar sALUInsts;
+        /* Accelwattch Stats */
+        statistics::Scalar decodedInsts;
+        statistics::Scalar decodedIntInsts;
+        statistics::Scalar decodedFpInsts;
+        statistics::Scalar intInsts;
+        statistics::Scalar fpInsts;
+        statistics::Scalar dpInsts;
+        statistics::Scalar intMulInsts;
+        statistics::Scalar intMul24Insts;
+        statistics::Scalar intMul32Insts;
+        statistics::Scalar intDivInsts;
+        statistics::Scalar fpMulInsts;
+        statistics::Scalar fpDivInsts;
+        statistics::Scalar fpSqrtInsts;
+        statistics::Scalar fpLgInsts;
+        statistics::Scalar fpSinInsts;
+        statistics::Scalar fpExpInsts;
+        statistics::Scalar dpMulInsts;
+        statistics::Scalar dpDivInsts;
+        statistics::Scalar texInsts;
+        /* End of Accelwattch Stats */
         statistics::Formula sALUInstsPerWF;
         statistics::Scalar instCyclesVALU;
         statistics::Scalar instCyclesSALU;

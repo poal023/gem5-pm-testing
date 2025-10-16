@@ -2095,6 +2095,7 @@ ComputeUnit::ITLBPort::recvReqRetry()
 void
 ComputeUnit::updateInstStats(GPUDynInstPtr gpuDynInst)
 {
+    stats.totalInsts++;
     if (gpuDynInst->isScalar()) {
         if (gpuDynInst->isALU() && !gpuDynInst->isWaitcnt()) {
             stats.sALUInsts++;
@@ -2199,6 +2200,9 @@ ComputeUnit::updateInstStats(GPUDynInstPtr gpuDynInst)
                 break;
             }
         }
+    }
+    if (gpuDynInst->isTex()) {
+        stats.texInsts++;
     }
 }
 
@@ -2434,10 +2438,46 @@ ComputeUnit::LDSPort::recvReqRetry()
 ComputeUnit::ComputeUnitStats::ComputeUnitStats(statistics::Group *parent,
     int n_wf)
     : statistics::Group(parent),
+      ADD_STAT(totalInsts, "Number of total insts issued."),
       ADD_STAT(vALUInsts, "Number of vector ALU insts issued."),
       ADD_STAT(vALUInstsPerWF, "The avg. number of vector ALU insts issued "
                "per-wavefront."),
       ADD_STAT(sALUInsts, "Number of scalar ALU insts issued."),
+      ADD_STAT(decodedInsts, "Number of total decoded instructions."),
+      ADD_STAT(decodedIntInsts, "Number of total decoded\
+              integer instructions."),
+      ADD_STAT(decodedFpInsts, "Number of total decoded FP instructions."),
+      ADD_STAT(intInsts, "Number of total integer instructions\
+              executed (vector only)."),
+      ADD_STAT(fpInsts, "Number of total fp instructions\
+              executed (vector only)."),
+      ADD_STAT(dpInsts, "Number of total double fp instructions\
+              executed (vector only)."),
+      ADD_STAT(intMulInsts, "Number of total integer mult instructions\
+              executed (vector only)."),
+      ADD_STAT(intMul24Insts, "Number of  24-bit integer mult instructions\
+              executed (vector only)."),
+      ADD_STAT(intMul32Insts, "Number of 32-bit integer mult instructions\
+              executed (vector only)."),
+      ADD_STAT(intDivInsts, "Number of integer div instructions\
+              executed (vector only)."),
+      ADD_STAT(fpMulInsts, "Number of fp mult instructions\
+              executed (vector only)."),
+      ADD_STAT(fpDivInsts, "Number of fp div instructions\
+              executed (vector only)."),
+      ADD_STAT(fpSqrtInsts, "Number of fp square-root instructions\
+              executed (vector only)."),
+      ADD_STAT(fpLgInsts, "Number of fp logarithm instructions\
+              executed (vector only)."),
+      ADD_STAT(fpSinInsts, "Number of fp sin instructions executed\
+              (vector only)."),
+      ADD_STAT(fpExpInsts, "Number of fp exponential instructions\
+              executed (vector only)."),
+      ADD_STAT(dpMulInsts, "Number of double fp mult instructions\
+              executed (vector only)."),
+      ADD_STAT(dpDivInsts, "Number of double fp div instructions\
+              executed (vector only)."),
+      ADD_STAT(texInsts, "Number of texture instructions executed"),
       ADD_STAT(sALUInstsPerWF, "The avg. number of scalar ALU insts issued "
                "per-wavefront."),
       ADD_STAT(instCyclesVALU,
