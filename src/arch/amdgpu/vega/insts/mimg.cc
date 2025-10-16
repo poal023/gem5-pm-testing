@@ -41,6 +41,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_LOAD::Inst_MIMG__IMAGE_LOAD(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_load")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Load);
         setFlag(GlobalSegment);
@@ -72,6 +73,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_LOAD_MIP::Inst_MIMG__IMAGE_LOAD_MIP(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_load_mip")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Load);
         setFlag(GlobalSegment);
@@ -103,6 +105,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_LOAD_PCK::Inst_MIMG__IMAGE_LOAD_PCK(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_load_pck")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Load);
         setFlag(GlobalSegment);
@@ -135,6 +138,7 @@ namespace VegaISA
         InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_load_pck_sgn")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Load);
         setFlag(GlobalSegment);
@@ -168,6 +172,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_load_mip_pck")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Load);
         setFlag(GlobalSegment);
@@ -201,6 +206,7 @@ namespace VegaISA
         InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_load_mip_pck_sgn")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Load);
         setFlag(GlobalSegment);
@@ -233,6 +239,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_STORE::Inst_MIMG__IMAGE_STORE(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_store")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Store);
         setFlag(GlobalSegment);
@@ -264,6 +271,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_STORE_MIP::Inst_MIMG__IMAGE_STORE_MIP(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_store_mip")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Store);
         setFlag(GlobalSegment);
@@ -296,6 +304,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_STORE_PCK::Inst_MIMG__IMAGE_STORE_PCK(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_store_pck")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Store);
         setFlag(GlobalSegment);
@@ -328,6 +337,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_store_mip_pck")
     {
+        setFlag(Tex);
         setFlag(MemoryRef);
         setFlag(Store);
         setFlag(GlobalSegment);
@@ -361,6 +371,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_get_resinfo")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GET_RESINFO
 
@@ -383,6 +394,7 @@ namespace VegaISA
         InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_swap")
     {
+        setFlag(Tex);
         setFlag(AtomicExch);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -413,6 +425,7 @@ namespace VegaISA
         InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_cmpswap")
     {
+        setFlag(Tex);
         setFlag(AtomicCAS);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -444,6 +457,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_ATOMIC_ADD::Inst_MIMG__IMAGE_ATOMIC_ADD(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_add")
     {
+        setFlag(Tex);
         setFlag(AtomicAdd);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -473,6 +487,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_ATOMIC_SUB::Inst_MIMG__IMAGE_ATOMIC_SUB(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_sub")
     {
+        setFlag(Tex);
         setFlag(AtomicSub);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -503,6 +518,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_smin")
     {
+        setFlag(Tex);
         setFlag(AtomicMin);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -533,6 +549,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_umin")
     {
+        setFlag(Tex);
         setFlag(AtomicMin);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -563,6 +580,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_smax")
     {
+        setFlag(Tex);
         setFlag(AtomicMax);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -593,6 +611,7 @@ namespace VegaISA
         InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_umax")
     {
+        setFlag(Tex);
         setFlag(AtomicMax);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -622,6 +641,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_ATOMIC_AND::Inst_MIMG__IMAGE_ATOMIC_AND(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_and")
     {
+        setFlag(Tex);
         setFlag(AtomicAnd);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -651,6 +671,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_ATOMIC_OR::Inst_MIMG__IMAGE_ATOMIC_OR(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_or")
     {
+        setFlag(Tex);
         setFlag(AtomicOr);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -680,6 +701,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_ATOMIC_XOR::Inst_MIMG__IMAGE_ATOMIC_XOR(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_xor")
     {
+        setFlag(Tex);
         setFlag(AtomicXor);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -709,6 +731,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_ATOMIC_INC::Inst_MIMG__IMAGE_ATOMIC_INC(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_inc")
     {
+        setFlag(Tex);
         setFlag(AtomicInc);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -738,6 +761,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_ATOMIC_DEC::Inst_MIMG__IMAGE_ATOMIC_DEC(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_atomic_dec")
     {
+        setFlag(Tex);
         setFlag(AtomicDec);
         if (instData.GLC) {
             setFlag(AtomicReturn);
@@ -767,6 +791,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE::Inst_MIMG__IMAGE_SAMPLE(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample")
     {
+        setFlag(Tex);
     } // Inst_MIMG__IMAGE_SAMPLE
 
     Inst_MIMG__IMAGE_SAMPLE::~Inst_MIMG__IMAGE_SAMPLE()
@@ -785,6 +810,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_CL::Inst_MIMG__IMAGE_SAMPLE_CL(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_CL
 
@@ -804,6 +830,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_D::Inst_MIMG__IMAGE_SAMPLE_D(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_d")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_D
 
@@ -824,6 +851,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_d_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_D_CL
 
@@ -844,6 +872,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_L::Inst_MIMG__IMAGE_SAMPLE_L(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_l")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_L
 
@@ -863,6 +892,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_B::Inst_MIMG__IMAGE_SAMPLE_B(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_b")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_B
 
@@ -883,6 +913,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_b_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_B_CL
 
@@ -902,6 +933,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_LZ::Inst_MIMG__IMAGE_SAMPLE_LZ(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_lz")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_LZ
 
@@ -921,6 +953,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_C::Inst_MIMG__IMAGE_SAMPLE_C(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C
 
@@ -941,6 +974,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_CL
 
@@ -960,6 +994,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_C_D::Inst_MIMG__IMAGE_SAMPLE_C_D(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_d")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_D
 
@@ -980,6 +1015,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_d_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_D_CL
 
@@ -999,6 +1035,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_C_L::Inst_MIMG__IMAGE_SAMPLE_C_L(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_l")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_L
 
@@ -1018,6 +1055,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_C_B::Inst_MIMG__IMAGE_SAMPLE_C_B(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_b")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_B
 
@@ -1038,6 +1076,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_b_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_B_CL
 
@@ -1058,6 +1097,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_lz")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_LZ
 
@@ -1077,6 +1117,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_O::Inst_MIMG__IMAGE_SAMPLE_O(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_O
 
@@ -1097,6 +1138,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_CL_O
 
@@ -1116,6 +1158,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_D_O::Inst_MIMG__IMAGE_SAMPLE_D_O(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_d_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_D_O
 
@@ -1136,6 +1179,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_d_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_D_CL_O
 
@@ -1155,6 +1199,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_L_O::Inst_MIMG__IMAGE_SAMPLE_L_O(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_l_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_L_O
 
@@ -1174,6 +1219,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_B_O::Inst_MIMG__IMAGE_SAMPLE_B_O(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_b_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_B_O
 
@@ -1194,6 +1240,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_b_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_B_CL_O
 
@@ -1214,6 +1261,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_lz_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_LZ_O
 
@@ -1233,6 +1281,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_C_O::Inst_MIMG__IMAGE_SAMPLE_C_O(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_O
 
@@ -1253,6 +1302,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_CL_O
 
@@ -1273,6 +1323,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_d_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_D_O
 
@@ -1293,6 +1344,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_d_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_D_CL_O
 
@@ -1313,6 +1365,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_l_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_L_O
 
@@ -1333,6 +1386,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_b_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_B_O
 
@@ -1353,6 +1407,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_b_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_B_CL_O
 
@@ -1373,6 +1428,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_lz_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_LZ_O
 
@@ -1392,6 +1448,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_GATHER4::Inst_MIMG__IMAGE_GATHER4(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4
 
@@ -1411,6 +1468,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_GATHER4_CL::Inst_MIMG__IMAGE_GATHER4_CL(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_CL
 
@@ -1430,6 +1488,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_GATHER4_L::Inst_MIMG__IMAGE_GATHER4_L(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_l")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_L
 
@@ -1449,6 +1508,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_GATHER4_B::Inst_MIMG__IMAGE_GATHER4_B(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_b")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_B
 
@@ -1469,6 +1529,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_b_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_B_CL
 
@@ -1488,6 +1549,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_GATHER4_LZ::Inst_MIMG__IMAGE_GATHER4_LZ(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_lz")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_LZ
 
@@ -1507,6 +1569,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_GATHER4_C::Inst_MIMG__IMAGE_GATHER4_C(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C
 
@@ -1527,6 +1590,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_CL
 
@@ -1547,6 +1611,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_l")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_L
 
@@ -1567,6 +1632,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_b")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_B
 
@@ -1587,6 +1653,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_b_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_B_CL
 
@@ -1607,6 +1674,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_lz")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_LZ
 
@@ -1626,6 +1694,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_GATHER4_O::Inst_MIMG__IMAGE_GATHER4_O(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_O
 
@@ -1646,6 +1715,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_CL_O
 
@@ -1666,6 +1736,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_l_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_L_O
 
@@ -1686,6 +1757,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_b_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_B_O
 
@@ -1706,6 +1778,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_b_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_B_CL_O
 
@@ -1726,6 +1799,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_lz_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_LZ_O
 
@@ -1746,6 +1820,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_O
 
@@ -1766,6 +1841,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_CL_O
 
@@ -1786,6 +1862,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_l_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_L_O
 
@@ -1806,6 +1883,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_b_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_B_O
 
@@ -1826,6 +1904,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_b_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_B_CL_O
 
@@ -1846,6 +1925,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_gather4_c_lz_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GATHER4_C_LZ_O
 
@@ -1865,6 +1945,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_GET_LOD::Inst_MIMG__IMAGE_GET_LOD(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_get_lod")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_GET_LOD
 
@@ -1885,6 +1966,7 @@ namespace VegaISA
     Inst_MIMG__IMAGE_SAMPLE_CD::Inst_MIMG__IMAGE_SAMPLE_CD(InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_cd")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_CD
 
@@ -1905,6 +1987,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_cd_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_CD_CL
 
@@ -1926,6 +2009,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_cd")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_CD
 
@@ -1946,6 +2030,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_cd_cl")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_CD_CL
 
@@ -1967,6 +2052,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_cd_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_CD_O
 
@@ -1987,6 +2073,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_cd_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_CD_CL_O
 
@@ -2008,6 +2095,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_cd_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_CD_O
 
@@ -2028,6 +2116,7 @@ namespace VegaISA
           InFmt_MIMG *iFmt)
         : Inst_MIMG(iFmt, "image_sample_c_cd_cl_o")
     {
+        setFlag(Tex);
         setFlag(GlobalSegment);
     } // Inst_MIMG__IMAGE_SAMPLE_C_CD_CL_O
 

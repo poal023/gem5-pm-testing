@@ -38,6 +38,20 @@ class GPUStaticInstFlags(Enum):
     vals = [
         # Op types
         "ALU",  # ALU op
+        "IntMul",  # Int Mults
+        "IntMul24",  # 24b Int Mults
+        "IntMul32",  # 32b Int Mults
+        "IntDiv",  # Int Divs
+        "FpMul",  # Single-Precision Muls
+        "FpDiv",  # Single-Precision Divs
+        "FpSqrt",  # Fp Square Roots
+        "FpLg",  # Fp Logarithms
+        "FpSin",  # Fp Sin
+        "FpExp",  # Fp Exp
+        "DpMul",  # Double-Precision Muls
+        "DpDiv",  # Double-Precision Divs
+        "Tensor",  # Tensor Insts
+        "Tex",  # Texture Insts
         "Branch",  # Branch instruction
         "CondBranch",  # Conditinal Branch instruction
         "Nop",  # No-op (no effect at all)
