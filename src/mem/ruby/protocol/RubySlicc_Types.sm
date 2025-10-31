@@ -235,6 +235,10 @@ structure (CacheMemory, external = "yes") {
 
   void profileDemandHit();
   void profileDemandMiss();
+  void profileReadHit();
+  void profileReadMiss();
+  void profileWriteHit();
+  void profileWriteMiss();
   void profilePrefetchHit();
   void profilePrefetchMiss();
 }

@@ -320,10 +320,26 @@ machine(MachineType:SQC, "GPU SQC (L1 I Cache)")
 
   // added for profiling
   action(uu_profileDataMiss, "\udm", desc="Profile SQC demand miss"){
+      peek(mandatoryQueue_in, RubyRequest) {
+          if (in_msg.Type == RubyRequestType:LD) {
+              L1cache.profileReadMiss();
+          }
+          if (in_msg.Type == RubyRequestType:ST) {
+              L1cache.profileWriteMiss();
+          }
+      }
     L1cache.profileDemandMiss();
   }
 
   action(uu_profileDataHit, "\udh", desc="Profile SQC demand hit"){
+      peek(mandatoryQueue_in, RubyRequest) {
+          if (in_msg.Type == RubyRequestType:LD) {
+              L1cache.profileReadHit();
+          }
+          if (in_msg.Type == RubyRequestType:ST) {
+              L1cache.profileWriteHit();
+          }
+      }
     L1cache.profileDemandHit();
   }
 

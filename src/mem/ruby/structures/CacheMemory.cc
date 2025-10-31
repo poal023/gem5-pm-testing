@@ -568,6 +568,14 @@ CacheMemoryStats::CacheMemoryStats(statistics::Group *parent)
       ADD_STAT(m_demand_misses, "Number of cache demand misses"),
       ADD_STAT(m_demand_accesses, "Number of cache demand accesses",
                m_demand_hits + m_demand_misses),
+      ADD_STAT(read_hits, "Number of cache read hits"),
+      ADD_STAT(read_misses, "Number of cache read misses"),
+      ADD_STAT(read_accesses, "Number of cache read accesses",
+               read_hits + read_misses),
+      ADD_STAT(write_hits, "Number of cache write hits"),
+      ADD_STAT(write_misses, "Number of cache write misses"),
+      ADD_STAT(write_accesses, "Number of cache write accesses",
+               write_hits + write_misses),
       ADD_STAT(m_prefetch_hits, "Number of cache prefetch hits"),
       ADD_STAT(m_prefetch_misses, "Number of cache prefetch misses"),
       ADD_STAT(m_prefetch_accesses, "Number of cache prefetch accesses",
@@ -805,6 +813,30 @@ void
 CacheMemory::profileDemandMiss()
 {
     cacheMemoryStats.m_demand_misses++;
+}
+
+void
+CacheMemory::profileReadHit()
+{
+    cacheMemoryStats.read_hits++;
+}
+
+void
+CacheMemory::profileReadMiss()
+{
+    cacheMemoryStats.read_misses++;
+}
+
+void
+CacheMemory::profileWriteHit()
+{
+    cacheMemoryStats.write_hits++;
+}
+
+void
+CacheMemory::profileWriteMiss()
+{
+    cacheMemoryStats.write_misses++;
 }
 
 void

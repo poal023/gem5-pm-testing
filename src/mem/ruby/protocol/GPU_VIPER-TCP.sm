@@ -719,10 +719,26 @@ machine(MachineType:TCP, "GPU TCP (L1 Data Cache)")
 
   // added for profiling
   action(uu_profileDataMiss, "\udm", desc="Profile the demand miss"){
+      peek(mandatoryQueue_in, RubyRequest){
+          if (in_msg.Type == RubyRequestType:LD) {
+              L1cache.profileReadMiss();
+          }
+          if (in_msg.Type == RubyRequestType:ST) {
+              L1cache.profileWriteMiss();
+          }
+      }
     L1cache.profileDemandMiss();
   }
 
   action(uu_profileDataHit, "\udh", desc="Profile the demand hit"){
+      peek(mandatoryQueue_in, RubyRequest){
+          if (in_msg.Type == RubyRequestType:LD) {
+              L1cache.profileReadHit();
+          }
+          if (in_msg.Type == RubyRequestType:ST) {
+              L1cache.profileWriteHit();
+          }
+      }
     L1cache.profileDemandHit();
   }
 

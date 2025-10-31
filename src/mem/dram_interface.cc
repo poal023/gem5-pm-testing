@@ -291,6 +291,8 @@ DRAMInterface::prechargeBank(Rank& rank_ref, Bank& bank, Tick pre_tick,
     // the page
     stats.bytesPerActivate.sample(bank.bytesAccessed);
 
+    stats.precharges++;
+
     bank.openRow = Bank::NO_ROW;
 
     Tick pre_at = pre_tick;
@@ -1846,6 +1848,8 @@ DRAMInterface::DRAMStats::DRAMStats(DRAMInterface &_dram)
     : statistics::Group(&_dram),
     dram(_dram),
 
+    ADD_STAT(precharges, statistics::units::Count::get(),
+             "The number of precharge commands issued"),
     ADD_STAT(readBursts, statistics::units::Count::get(),
              "Number of DRAM read bursts"),
     ADD_STAT(writeBursts, statistics::units::Count::get(),

@@ -249,6 +249,14 @@ class CacheMemory : public SimObject
           statistics::Scalar m_demand_misses;
           statistics::Formula m_demand_accesses;
 
+          statistics::Scalar read_hits;
+          statistics::Scalar read_misses;
+          statistics::Formula read_accesses;
+
+          statistics::Scalar write_hits;
+          statistics::Scalar write_misses;
+          statistics::Formula write_accesses;
+
           statistics::Scalar m_prefetch_hits;
           statistics::Scalar m_prefetch_misses;
           statistics::Formula m_prefetch_accesses;
@@ -261,6 +269,10 @@ class CacheMemory : public SimObject
       // each time they are called
       void profileDemandHit();
       void profileDemandMiss();
+      void profileReadHit();
+      void profileReadMiss();
+      void profileWriteHit();
+      void profileWriteMiss();
       void profilePrefetchHit();
       void profilePrefetchMiss();
 };

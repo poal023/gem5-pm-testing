@@ -589,6 +589,11 @@ class DRAMInterface : public MemInterface
 
         DRAMInterface &dram;
 
+        /*
+         * Number of preacharge commands
+         */
+        statistics::Scalar precharges;
+
         /** total number of DRAM bursts serviced */
         statistics::Scalar readBursts;
         statistics::Scalar writeBursts;
