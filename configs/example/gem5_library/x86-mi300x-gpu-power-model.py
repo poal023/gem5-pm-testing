@@ -112,8 +112,8 @@ class BeginExitHandler(ExitHandler, hypercall_num=3333):
     def _process(self, simulator):
         print("BeginExitHandler: Hypercall 3333 detected. Resetting stats.")
         m5.stats.reset()
-        Root.getInstance().board.gpus
-        [0].shader.power_model[0].pm[0].beginSampling()
+        gpu = Root.getInstance().board.gpus[0]
+        gpu.shader.power_model[0].pm[0].beginSampling()
 
     def _exit_simulation(self):
         return False  # Continue simulation
@@ -122,8 +122,8 @@ class BeginExitHandler(ExitHandler, hypercall_num=3333):
 class EndExitHandler(ExitHandler, hypercall_num=3334):
 
     def _process(self, simulator):
-        Root.getInstance().board.gpus
-        [0].shader.power_model[0].pm[0].stopSampling()
+        gpu = Root.getInstance().board.gpus[0]
+        gpu.shader.power_model[0].pm[0].stopSampling()
 
         print("EndExitHandler: Hypercall 3334 detected. Dumping stats.")
         m5.stats.dump()
