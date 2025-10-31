@@ -1,6 +1,9 @@
 from m5.objects.PowerModelState import PowerModelState
 from m5.params import *
-from m5.SimObject import SimObject
+from m5.SimObject import (
+    SimObject,
+    cxxMethod,
+)
 
 
 # Dynamic and static power equations represented by arithmetic operators than strings in MathExprPowerModel
@@ -19,3 +22,11 @@ class PowerModelPyFunc(PowerModelState):
     clock_stat = Param.String(
         "", "Stat corresponding to your clock (used for sampling)"
     )
+
+    @cxxMethod
+    def beginSampling(self):
+        pass
+
+    @cxxMethod
+    def stopSampling(self):
+        pass

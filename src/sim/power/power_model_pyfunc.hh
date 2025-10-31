@@ -35,12 +35,8 @@ class PowerModelPyFunc : public PowerModelState
              pybind11::object result_py = st_func();
              return result_py.cast<double>();
      }
-     void startup() override;
-     ~PowerModelPyFunc() {
-          if (pwr_interval > 0) {
-              deschedule(intervalEvent);
-          }
-     }
+     void beginSampling();
+     void stopSampling();
 };
 
 } // namespace gem5
