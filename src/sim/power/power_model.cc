@@ -41,13 +41,14 @@
 #include "params/PowerModel.hh"
 #include "params/PowerModelState.hh"
 #include "sim/clocked_object.hh"
+#include "sim/power/energy_modelable.hh"
 #include "sim/sub_system.hh"
 
 namespace gem5
 {
 
 PowerModelState::PowerModelState(const Params &p)
-    : SimObject(p), _temp(0), clocked_object(NULL),
+    : SimObject(p), _temp(0), modelable_object(NULL),
       ADD_STAT(dynamicPower, statistics::units::Watt::get(),
                "Dynamic power for this object (Watts)"),
       ADD_STAT(staticPower, statistics::units::Watt::get(),
@@ -61,7 +62,7 @@ PowerModelState::PowerModelState(const Params &p)
 
 PowerModel::PowerModel(const Params &p)
     : SimObject(p), states_pm(p.pm), subsystem(p.subsystem),
-      clocked_object(NULL), power_model_type(p.pm_type),
+      modelable_object(NULL), power_model_type(p.pm_type),
       ADD_STAT(dynamicPower, statistics::units::Watt::get(),
                          "Dynamic power for this power state"),
       ADD_STAT(staticPower, statistics::units::Watt::get(),
@@ -84,6 +85,20 @@ PowerModel::PowerModel(const Params &p)
 }
 
 void
+PowerModel::setModelableObject(EnergyModelable *mod_obj)
+{
+    this->modelable_object = mod_obj;
+    if (this->modelable_object) {
+        std::cout << "At PowerModel::setModelableObject, \
+            object set with name: " << this->modelable_object->name() <<
+            std::endl;
+    }
+    for (auto & pms: states_pm)
+        pms->setModelableObject(mod_obj);
+}
+
+/*
+void
 PowerModel::setClockedObject(ClockedObject * clkobj)
 {
     this->clocked_object = clkobj;
@@ -91,6 +106,7 @@ PowerModel::setClockedObject(ClockedObject * clkobj)
     for (auto & pms: states_pm)
         pms->setClockedObject(clkobj);
 }
+*/
 
 void
 PowerModel::thermalUpdateCallback(const Temperature &temp)
@@ -110,13 +126,14 @@ PowerModel::regProbePoints()
 double
 PowerModel::getDynamicPower() const
 {
-    assert(clocked_object);
+    //assert(clocked_object);
+    //assert(modelable_object);
 
     if (power_model_type == enums::PMType::Static) {
         // This power model only collects static data
         return 0;
     }
-    std::vector<double> w = clocked_object->powerState->getWeights();
+    std::vector<double> w = modelable_object->powerState->getWeights();
 
     // Same number of states (excluding UNDEFINED)
     assert(w.size() - 1 == states_pm.size());
@@ -136,9 +153,10 @@ PowerModel::getDynamicPower() const
 double
 PowerModel::getStaticPower() const
 {
-    assert(clocked_object);
+    //assert(clocked_object);
+    //assert(modelable_object);
 
-    std::vector<double> w = clocked_object->powerState->getWeights();
+    std::vector<double> w = modelable_object->powerState->getWeights();
 
     if (power_model_type == enums::PMType::Dynamic) {
         // This power model only collects dynamic data

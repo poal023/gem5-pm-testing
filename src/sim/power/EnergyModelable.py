@@ -1,7 +1,14 @@
-# -*- mode:python -*-
-
-# Copyright (c) 2015 ARM Limited
-# All rights reserved
+# Copyright (c) 2012, 2015-2017, 2019-2020 ARM Limited
+# All rights reserved.
+#
+# The license below extends only to copyright in the software and shall
+# not be construed as granting a license to any other intellectual
+# property including but not limited to intellectual property relating
+# to a hardware implementation of the functionality of the software
+# licensed hereunder.  You may use the software subject to the license
+# terms below provided that you ensure that this notice is replicated
+# unmodified and in its entirety in all distributions of the software,
+# modified or unmodified, in source code or in binary form.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -26,22 +33,23 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Import('*')
+from m5.objects.PowerState import PowerState
+from m5.params import *
+from m5.proxy import *
+from m5.SimObject import SimObject
 
-SimObject('MathExprPowerModel.py', sim_objects=['MathExprPowerModel'])
-SimObject('EnergyModelable.py', sim_objects=['EnergyModelable'])
-SimObject('PowerModel.py', sim_objects=['PowerModel'], enums=['PMType'])
-SimObject('PowerModelState.py', sim_objects=['PowerModelState'])
-SimObject('ThermalDomain.py', sim_objects=['ThermalDomain'])
-SimObject('ThermalModel.py', sim_objects=[
-    'ThermalNode', 'ThermalResistor', 'ThermalCapacitor',
-    'ThermalReference', 'ThermalModel'])
 
-Source('energy_modelable.cc')
-Source('power_model.cc')
-Source('mathexpr_powermodel.cc')
-Source('thermal_domain.cc')
-Source('thermal_model.cc')
-Source('thermal_node.cc')
+class EnergyModelable(SimObject):
+    type = "EnergyModelable"
+    abstract = True
+    cxx_header = "sim/power/energy_modelable.hh"
+    cxx_class = "gem5::EnergyModelable"
 
-DebugFlag('ThermalDomain')
+    # The clock domain this clocked object belongs to, inheriting the
+    # parent's clock domain by default
+    clk_domain = Param.ClockDomain(Parent.clk_domain, "Clock domain")
+
+    # Power model for this EnergyModelable
+    power_model = VectorParam.PowerModel([], "Power models")
+
+    power_state = Param.PowerState(PowerState(), "Power state")

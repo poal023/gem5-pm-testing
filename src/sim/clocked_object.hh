@@ -48,6 +48,7 @@
 #include "params/ClockedObject.hh"
 #include "sim/core.hh"
 #include "sim/clock_domain.hh"
+#include "sim/power/energy_modelable.hh"
 #include "sim/power_state.hh"
 #include "sim/sim_object.hh"
 
@@ -231,7 +232,7 @@ class Clocked
  * The ClockedObject class extends the SimObject with a clock and
  * accessor functions to relate ticks to the cycles of the object.
  */
-class ClockedObject : public SimObject, public Clocked
+class ClockedObject : public EnergyModelable, public Clocked
 {
   public:
     ClockedObject(const ClockedObjectParams &p);
@@ -239,10 +240,17 @@ class ClockedObject : public SimObject, public Clocked
     /** Parameters of ClockedObject */
     using Params = ClockedObjectParams;
 
-    void serialize(CheckpointOut &cp) const override;
-    void unserialize(CheckpointIn &cp) override;
+    Tick clockPeriod() const {
+        return Clocked::clockPeriod();
+    }
+    double voltage() const {
+        return Clocked::voltage();
+    }
 
-    PowerState *powerState;
+    //void serialize(CheckpointOut &cp) const override;
+    //void unserialize(CheckpointIn &cp) override;
+
+    //PowerState *powerState;
 };
 
 } // namespace gem5

@@ -43,6 +43,7 @@
 #include "enums/PMType.hh"
 #include "params/PowerModel.hh"
 #include "params/PowerModelState.hh"
+#include "sim/power/energy_modelable.hh"
 #include "sim/probe/probe.hh"
 #include "sim/sim_object.hh"
 
@@ -84,8 +85,8 @@ class PowerModelState : public SimObject
      */
     virtual void setTemperature(Temperature temp) { _temp = temp; }
 
-    void setClockedObject(ClockedObject * clkobj) {
-        clocked_object = clkobj;
+    void setModelableObject(EnergyModelable * mod_obj) {
+        this->modelable_object = mod_obj;
     }
 
   protected:
@@ -94,7 +95,9 @@ class PowerModelState : public SimObject
     Temperature _temp;
 
     /** The clocked object we belong to */
-    ClockedObject * clocked_object;
+    //ClockedObject * clocked_object;
+
+    EnergyModelable * modelable_object;
 
     statistics::Value dynamicPower, staticPower;
 };
@@ -126,7 +129,9 @@ class PowerModel : public SimObject
      */
     double getStaticPower() const;
 
-    void setClockedObject(ClockedObject *clkobj);
+    //void setClockedObject(ClockedObject *clkobj);
+
+    void setModelableObject(EnergyModelable *mod_obj);
 
     virtual void regProbePoints();
 
@@ -160,7 +165,9 @@ class PowerModel : public SimObject
     SubSystem * subsystem;
 
     /** The clocked object we belong to */
-    ClockedObject * clocked_object;
+    //ClockedObject * clocked_object;
+
+    EnergyModelable *modelable_object;
 
     /** The type of power model - collects all power, static or dynamic only */
     enums::PMType power_model_type;

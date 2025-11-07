@@ -91,9 +91,9 @@ MathExprPowerModel::getStatValue(const std::string &name) const
     if (name == "temp") {
         return _temp.toCelsius();
     } else if (name == "voltage") {
-        return clocked_object->voltage();
+        return modelable_object->voltage();
     } else if (name=="clock_period") {
-        return clocked_object->clockPeriod();
+        return modelable_object->clockPeriod();
     }
 
     const auto it = statsMap.find(name);

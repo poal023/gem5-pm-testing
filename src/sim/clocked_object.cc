@@ -44,16 +44,17 @@ namespace gem5
 {
 
 ClockedObject::ClockedObject(const ClockedObjectParams &p) :
-    SimObject(p), Clocked(*p.clk_domain), powerState(p.power_state)
+    EnergyModelable(p), Clocked(*p.clk_domain)
 {
     // Register the power_model with the object
     // Slightly counter-intuitively, power models need to to register with the
     // clocked object and not the power stated object because the power model
     // needs information from the clock domain, which is an attribute of the
     // clocked object.
-    for (auto & power_model: p.power_model)
-        power_model->setClockedObject(this);
+    //for (auto & power_model: p.power_model)
+    //    power_model->setClockedObject(this);
 }
+/*
 
 void
 ClockedObject::serialize(CheckpointOut &cp) const
@@ -65,5 +66,6 @@ ClockedObject::unserialize(CheckpointIn &cp)
 {
     powerState->unserialize(cp);
 }
+*/
 
 } // namespace gem5

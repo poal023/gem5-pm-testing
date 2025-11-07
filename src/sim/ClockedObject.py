@@ -33,18 +33,20 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+from m5.objects.EnergyModelable import EnergyModelable
 from m5.objects.PowerState import PowerState
 from m5.params import *
 from m5.proxy import *
 from m5.SimObject import SimObject
 
 
-class ClockedObject(SimObject):
+class ClockedObject(EnergyModelable):
     type = "ClockedObject"
     abstract = True
     cxx_header = "sim/clocked_object.hh"
     cxx_class = "gem5::ClockedObject"
 
+    """
     # The clock domain this clocked object belongs to, inheriting the
     # parent's clock domain by default
     clk_domain = Param.ClockDomain(Parent.clk_domain, "Clock domain")
@@ -53,3 +55,4 @@ class ClockedObject(SimObject):
     power_model = VectorParam.PowerModel([], "Power models")
 
     power_state = Param.PowerState(PowerState(), "Power state")
+    """
