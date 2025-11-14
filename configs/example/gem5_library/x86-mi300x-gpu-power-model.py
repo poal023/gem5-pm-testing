@@ -103,17 +103,29 @@ requires(
 )
 
 
-def exit_event_handler():
+"""
+def handle_workbegin():
+    print("Encountered beginning of ROI")
+    gpu = Root.getInstance().board.gpus[0]
+    #gpu.shader.power_model[0].pm[0].startSampling()
+    yield False
+
+def handle_workend():
+    print("Encountered end of ROI")
+    gpu = Root.getInstance().board.gpus[0]
+    #gpu.shader.power_model[0].pm[0].stopSampling()
     yield True
+
+"""
 
 
 class BeginExitHandler(ExitHandler, hypercall_num=3333):
 
     def _process(self, simulator):
         print("BeginExitHandler: Hypercall 3333 detected. Resetting stats.")
-        m5.stats.reset()
         gpu = Root.getInstance().board.gpus[0]
-        gpu.shader.power_model[0].pm[0].beginSampling()
+        gpu.shader.power_model[0].pm[0].startSampling()
+        # gpu.shader.power_model[0].pm[0].dynamic_power()
 
     def _exit_simulation(self):
         return False  # Continue simulation
@@ -336,6 +348,10 @@ board.set_kernel_disk_workload(
 
 simulator = Simulator(
     board=board,
+    # on_exit_event={
+    #    ExitEvent.WORKBEGIN : handle_workbegin(),
+    #    ExitEvent.WORKEND : handle_workend(),
+    # }
 )
 """ Power Model Hack:
     ---

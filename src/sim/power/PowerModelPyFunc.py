@@ -4,6 +4,7 @@ from m5.SimObject import (
     SimObject,
     cxxMethod,
 )
+from m5.util.pybind import *
 
 
 # Dynamic and static power equations represented by arithmetic operators than strings in MathExprPowerModel
@@ -23,10 +24,4 @@ class PowerModelPyFunc(PowerModelState):
         "", "Stat corresponding to your clock (used for sampling)"
     )
 
-    @cxxMethod
-    def beginSampling(self):
-        pass
-
-    @cxxMethod
-    def stopSampling(self):
-        pass
+    cxx_exports = [PyBindMethod("startSampling"), PyBindMethod("stopSampling")]

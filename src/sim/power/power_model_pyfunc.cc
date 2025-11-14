@@ -23,11 +23,12 @@ PowerModelPyFunc::PowerModelPyFunc(const Params &p)
         }
 
 void
-PowerModelPyFunc::beginSampling()
+PowerModelPyFunc::startSampling()
 {
-    assert(pwr_interval > 0 && !intervalEvent.scheduled());
+    assert(pwr_interval > 0);
     begin_sampling = true;
-    DPRINTF(PwrIntervalEvent, "Name of SO: %s\n", clocked_object->name());
+    DPRINTF(PwrIntervalEvent, "Starting sampling of SO: %s\n",
+            clocked_object->name());
     schedule(intervalEvent, curTick() + pwr_interval);
 
 }
@@ -36,29 +37,30 @@ void
 PowerModelPyFunc::stopSampling()
 {
     assert(pwr_interval > 0 && begin_sampling);
+    DPRINTF(PwrIntervalEvent, "Stopping sampling of SO: %s\n",
+            clocked_object->name());
     deschedule(intervalEvent);
 }
 
 void
 PowerModelPyFunc::powerAtInterval()
 {
-    if (pwr_interval > 0 && begin_sampling) {
-        auto prev_stat  = 0;
-        auto *stat_info = clocked_object->resolveStat(clock_stat);
+    assert(pwr_interval > 0 && begin_sampling);
+    DPRINTF(PwrIntervalEvent, "In powerAtInterval... (tick: %llu)\n",
+            curTick());
+    auto *stat_info = clocked_object->resolveStat(clock_stat);
+    if (stat_info) {
         auto stat = dynamic_cast<const statistics::ScalarInfo *>(stat_info);
-        DPRINTF(PwrIntervalEvent, "SO (%s) is non-zero with %llu\n",
-                clocked_object->name(), stat->value());
         if (stat->value() != 0) {
-            auto delta = stat->value() - prev_stat;
-            auto cycles = static_cast<uint64_t>(pwr_interval);
-            if (delta >= cycles) {
-                getDynamicPower();
-                getStaticPower();
-            }
+            DPRINTF(PwrIntervalEvent, "Calling dyn/st power (tick %llu)\n",
+                    curTick());
+            DPRINTF(PwrIntervalEvent, "Stat is %d\n", stat->value());
+            getDynamicPower();
+            getStaticPower();
         }
-
-        schedule(intervalEvent, curTick() + pwr_interval);
     }
+    schedule(intervalEvent, curTick() + pwr_interval);
+
 
 }
 

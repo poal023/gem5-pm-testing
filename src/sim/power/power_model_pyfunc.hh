@@ -35,7 +35,7 @@ class PowerModelPyFunc : public PowerModelState
              pybind11::object result_py = st_func();
              return result_py.cast<double>();
      }
-     void beginSampling();
+     void startSampling();
      void stopSampling();
 };
 
